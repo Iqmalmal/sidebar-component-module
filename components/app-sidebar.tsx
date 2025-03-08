@@ -29,11 +29,11 @@ const data = {
           items: [  // Adding nested items
             {
               title: "Quick Start",
-              url: "home/quickstart",
+              url: "quickstart",
             },
             {
               title: "Installation",
-              url: "home/installation",
+              url: "installation",
             }
           ]
         },
@@ -43,7 +43,7 @@ const data = {
           items: [
             {
               title: "Cloud Services",
-              url: "#",
+              url: "cloudservice",
             },
             {
               title: "Hosting",
