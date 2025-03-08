@@ -3,11 +3,10 @@
 import * as React from "react"
 import styles from "./app-sidebar.module.css"
 import {
-  House, Folder, PieChart,
+  House, PieChart,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import {
   Sidebar,
   SidebarContent,
