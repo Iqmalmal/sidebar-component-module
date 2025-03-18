@@ -14,178 +14,31 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 
-// Modified sample data with more nested trees
-const data = {
-  navMain: [
-    {
-      title: "Home",
-      url: "#",
-      icon: House,
-      isActive: true,
-      items: [
-        {
-          title: "Getting Started",
-          url: "dashboard",
-          items: [  // Adding nested items
-            {
-              title: "Quick Start",
-              url: "quickstart",
-            },
-            {
-              title: "Installation",
-              url: "installation",
-            }
-          ]
-        },
-        {
-          title: "Services",
-          url: "#",
-          items: [
-            {
-              title: "Cloud Services",
-              url: "cloudservice",
-            },
-            {
-              title: "Hosting",
-              url: "#",
-            }
-          ]
-        },
-      ],
-    },
-    {
-      title: "Analytics",
-      url: "#",
-      icon: PieChart,
-      items: [
-        {
-          title: "Dashboard",
-          url: "#",
-          items: [
-            {
-              title: "Real-time",
-              url: "#",
-            },
-            {
-              title: "Historical",
-              url: "#",
-            }
-          ]
-        },
-        {
-          title: "Reports",
-          url: "#",
-          items: [
-            {
-              title: "Daily",
-              url: "#",
-              items: [
-                {
-                  title: "Performance",
-                  url: "#",
-                  items: [
-                    {
-                      title: "CPU Usage",
-                      url: "#"
-                    },
-                    {
-                      title: "Memory Usage",
-                      url: "#"
-                    }
-                  ]
-                },
-                {
-                  title: "Traffic",
-                  url: "#",
-                  items: [
-                    {
-                      title: "Visitors",
-                      url: "#"
-                    },
-                    {
-                      title: "Page Views",
-                      url: "#"
-                    }
-                  ]
-                },
-                {
-                  title: "Revenue",
-                  url: "#",
-                  items: [
-                    {
-                      title: "Sales",
-                      url: "#"
-                    },
-                    {
-                      title: "Conversions",
-                      url: "#"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              title: "Monthly",
-              url: "#",
-              items: [
-                {
-                  title: "Financial",
-                  url: "#",
-                  items: [
-                    {
-                      title: "Income",
-                      url: "#"
-                    },
-                    {
-                      title: "Expenses",
-                      url: "#"
-                    }
-                  ]
-                },
-                {
-                  title: "Growth",
-                  url: "#",
-                  items: [
-                    {
-                      title: "User Growth",
-                      url: "#"
-                    },
-                    {
-                      title: "Market Share",
-                      url: "#"
-                    }
-                  ]
-                },
-                {
-                  title: "Analytics",
-                  url: "#",
-                  items: [
-                    {
-                      title: "Trends",
-                      url: "#"
-                    },
-                    {
-                      title: "Predictions",
-                      url: "#"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-      ]
-    },
-  ],
-}
+// Import sidebar data from JSON file
+import sidebarData from './sidebarData.json';
+
+// Map icon identifiers to actual components
+const iconMap = {
+  House: House,
+  PieChart: PieChart,
+};
+
+// Define a type for the keys of iconMap
+type IconKey = keyof typeof iconMap;
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  // Map sidebar data to include actual icon components
+  const navItems = sidebarData.navMain.map(item => ({
+    ...item,
+    icon: iconMap[item.icon as IconKey], // Use type assertion here
+  }));
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
       </SidebarHeader>
       <SidebarContent className={styles.customScrollbar}>
-        <NavMain items={data.navMain} />
+        <NavMain items={navItems} />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>

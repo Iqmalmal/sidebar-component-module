@@ -1,0 +1,163 @@
+{
+  "navMain": [
+    {
+      "title": "Home",
+      "url": "#",
+      "icon": "House",
+      "isActive": true,
+      "items": [
+        {
+          "title": "Getting Started",
+          "url": "dashboard",
+          "items": [
+            {
+              "title": "Quick Start",
+              "url": "quickstart"
+            },
+            {
+              "title": "Installation",
+              "url": "installation"
+            }
+          ]
+        },
+        {
+          "title": "Services",
+          "url": "#",
+          "items": [
+            {
+              "title": "Cloud Services",
+              "url": "cloudservice"
+            },
+            {
+              "title": "Hosting",
+              "url": "#"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Analytics",
+      "url": "#",
+      "icon": "PieChart",
+      "items": [
+        {
+          "title": "Dashboard",
+          "url": "#",
+          "items": [
+            {
+              "title": "Real-time",
+              "url": "#"
+            },
+            {
+              "title": "Historical",
+              "url": "#"
+            }
+          ]
+        },
+        {
+          "title": "Reports",
+          "url": "#",
+          "items": [
+            {
+              "title": "Daily",
+              "url": "#",
+              "items": [
+                {
+                  "title": "Performance",
+                  "url": "#",
+                  "items": [
+                    {
+                      "title": "CPU Usage",
+                      "url": "#"
+                    },
+                    {
+                      "title": "Memory Usage",
+                      "url": "#"
+                    }
+                  ]
+                },
+                {
+                  "title": "Traffic",
+                  "url": "#",
+                  "items": [
+                    {
+                      "title": "Visitors",
+                      "url": "#"
+                    },
+                    {
+                      "title": "Page Views",
+                      "url": "#"
+                    }
+                  ]
+                },
+                {
+                  "title": "Revenue",
+                  "url": "#",
+                  "items": [
+                    {
+                      "title": "Sales",
+                      "url": "#"
+                    },
+                    {
+                      "title": "Conversions",
+                      "url": "#"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Monthly",
+              "url": "#",
+              "items": [
+                {
+                  "title": "Financial",
+                  "url": "#",
+                  "items": [
+                    {
+                      "title": "Income",
+                      "url": "#"
+                    },
+                    {
+                      "title": "Expenses",
+                      "url": "#"
+                    }
+                  ]
+                },
+                {
+                  "title": "Growth",
+                  "url": "#",
+                  "items": [
+                    {
+                      "title": "User Growth",
+                      "url": "#"
+                    },
+                    {
+                      "title": "Market Share",
+                      "url": "#"
+                    }
+                  ]
+                },
+                {
+                  "title": "Analytics",
+                  "url": "#",
+                  "items": [
+                    {
+                      "title": "Trends",
+                      "url": "#"
+                    },
+                    {
+                      "title": "Predictions",
+                      "url": "#"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+} 

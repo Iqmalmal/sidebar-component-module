@@ -1,7 +1,6 @@
 "use client"
 
 import { ChevronRight, type LucideIcon } from "lucide-react"
-
 import {
   Collapsible,
   CollapsibleContent,
@@ -13,6 +12,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 import Link from "next/link"
+import React, { useState } from "react";
 
 interface NavItem {
   title: string
@@ -24,45 +24,49 @@ interface NavItem {
 
 // Recursive component for rendering menu items
 function NavMenuItems({ items }: { items: NavItem[] }) {
-  return items.map((item) => (
-    <div key={item.title} className="w-full">
-      {item.items ? (
-        <Collapsible defaultOpen={item.isActive} className="group/collapsible">
-          <CollapsibleTrigger asChild>
-            <SidebarMenuButton tooltip={item.title}>
+  return items.map((item) => {
+    const [isOpen, setIsOpen] = useState(item.isActive || false); // Local state for each item
+
+    return (
+      <div key={item.title} className="w-full">
+        {item.items ? (
+          <Collapsible open={isOpen} onOpenChange={setIsOpen} className="group/collapsible">
+            <CollapsibleTrigger asChild>
+              <SidebarMenuButton tooltip={item.title}>
+                <ChevronRight className={`mr-2 transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`} />
+                {item.icon && <item.icon />}
+                <span>{item.title}</span>
+              </SidebarMenuButton>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <div className="ml-4 flex flex-col gap-1">
+                {item.items.map((subItem) => (
+                  <div key={subItem.title}>
+                    {subItem.items ? (
+                      <NavMenuItems items={[subItem]} />
+                    ) : (
+                      <SidebarMenuButton asChild>
+                        <a href={subItem.url}>
+                          <span>{subItem.title}</span>
+                        </a>
+                      </SidebarMenuButton>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
+        ) : (
+          <SidebarMenuButton asChild>
+            <a href={item.url}>
               {item.icon && <item.icon />}
               <span>{item.title}</span>
-              <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-            </SidebarMenuButton>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            <div className="ml-4 flex flex-col gap-1">
-              {item.items.map((subItem) => (
-                <div key={subItem.title}>
-                  {subItem.items ? (
-                    <NavMenuItems items={[subItem]} />
-                  ) : (
-                    <SidebarMenuButton asChild>
-                      <a href={subItem.url}>
-                        <span>{subItem.title}</span>
-                      </a>
-                    </SidebarMenuButton>
-                  )}
-                </div>
-              ))}
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
-      ) : (
-        <SidebarMenuButton asChild>
-          <a href={item.url}>
-            {item.icon && <item.icon />}
-            <span>{item.title}</span>
-          </a>
-        </SidebarMenuButton>
-      )}
-    </div>
-  ))
+            </a>
+          </SidebarMenuButton>
+        )}
+      </div>
+    );
+  });
 }
 
 export function NavMain({ items }: { items: NavItem[] }) {
@@ -75,5 +79,5 @@ export function NavMain({ items }: { items: NavItem[] }) {
         <NavMenuItems items={items} />
       </div>
     </SidebarGroup>
-  )
+  );
 }
