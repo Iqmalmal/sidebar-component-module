@@ -24,13 +24,23 @@ interface NavItem {
 
 // Recursive component for rendering menu items
 function NavMenuItems({ items }: { items: NavItem[] }) {
-  return items.map((item) => {
-    const [isOpen, setIsOpen] = useState(item.isActive || false); // Local state for each item
+  const [openStates, setOpenStates] = useState<boolean[]>(Array(items.length).fill(false)); // State for open/close
+
+  return items.map((item, index) => {
+    const isOpen = openStates[index]; // Get the open state for the current item
+
+    const toggleOpen = () => {
+      setOpenStates((prev) => {
+        const newStates = [...prev];
+        newStates[index] = !newStates[index]; // Toggle the current item's state
+        return newStates;
+      });
+    };
 
     return (
       <div key={item.title} className="w-full">
         {item.items ? (
-          <Collapsible open={isOpen} onOpenChange={setIsOpen} className="group/collapsible">
+          <Collapsible open={isOpen} onOpenChange={toggleOpen} className="group/collapsible">
             <CollapsibleTrigger asChild>
               <SidebarMenuButton tooltip={item.title}>
                 <ChevronRight className={`mr-2 transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`} />
